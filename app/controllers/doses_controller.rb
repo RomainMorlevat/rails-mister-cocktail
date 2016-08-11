@@ -1,19 +1,25 @@
 class DosesController < ApplicationController
-  before_action :find_cocktail, only: [:new, :create, :destroy]
+  before_action :find_cocktail, only: [:new, :create]
+
+  # new is useless but it is required by rake
+  def new
+    @dose = Dose.new
+  end
 
   def create
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
     if @dose.save
       redirect_to cocktail_path(@cocktail)
+    else
+      render "cocktails/show"
     end
   end
 
   def destroy
     @dose = Dose.find(params[:id])
-    if @dose.destroy
-      redirect_to cocktail_path(@cocktail)
-    end
+    @dose.destroy
+    redirect_to cocktail_path(@dose.cocktail)
   end
 
   private
