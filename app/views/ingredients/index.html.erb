@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ul>
+        <% @ingredients.each do |ingredient| %>
+          <li><%= ingredient.name %> - <%= link_to "delete", ingredient_path(ingredient), method: :delete %></li>
+        <% end %>
+      </ul>
+      <%= link_to "Add an ingredient", new_ingredient_path %>
+    </div>
+  </div>
+</div>

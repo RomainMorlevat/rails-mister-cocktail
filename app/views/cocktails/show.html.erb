@@ -9,6 +9,13 @@
       </ul>
       <%= link_to "Edit", edit_cocktail_path %>
       <%= link_to "Delete", cocktail_path, method: :delete %>
+
+      <%= simple_form_for ([ @cocktail, Dose.new ]) do |f| %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.button :submit %>
+      <% end %>
+
     </div>
   </div>
 </div>
