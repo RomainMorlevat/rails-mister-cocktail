@@ -1,24 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%= @cocktail.name %></h1>
-      <ul>
-        <% @cocktail.doses.each do |dose| %>
-          <li><%= dose.description %> <%= dose.ingredient.name %> <%= link_to "Delete", dose_path(dose), method: :delete, data: { confirm: "Are you sure ?" } %></li>
-        <% end %>
-      </ul>
-      <% if @cocktail.photo? %>
-        <%= cl_image_tag(@cocktail.photo.path, width: 400, crop: :fill, alt: "Photo de #{@cocktail.name}") %>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(50,50,50,0.6) 50%), url(<%= cloudinary_url(@cocktail.photo.path) %>); background-position: center;">
+  <div class="banner-content">
+    <h1><%= @cocktail.name %></h1>
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+        <li><%= dose.description %> <%= dose.ingredient.name %> <%= link_to "Delete", dose_path(dose), method: :delete, data: { confirm: "Are you sure ?" } %></li>
       <% end %>
-      <%= link_to "Edit", edit_cocktail_path %>
-      <%= link_to "Delete", cocktail_path, method: :delete %>
+    </ul>
 
-      <%= simple_form_for ([ @cocktail, Dose.new ]) do |f| %>
-        <%= f.input :description %>
-        <%= f.association :ingredient %>
-        <%= f.button :submit %>
-      <% end %>
-
-    </div>
   </div>
 </div>
+
+
+<%= link_to "Edit", edit_cocktail_path %>
+<%= link_to "Delete", cocktail_path, method: :delete %>
+
+<%= simple_form_for ([ @cocktail, Dose.new ]) do |f| %>
+  <%= f.input :description %>
+  <%= f.association :ingredient %>
+  <%= f.button :submit %>
+<% end %>
