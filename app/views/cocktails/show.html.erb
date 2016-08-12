@@ -7,6 +7,9 @@
           <li><%= dose.description %> <%= dose.ingredient.name %> <%= link_to "Delete", dose_path(dose), method: :delete, data: { confirm: "Are you sure ?" } %></li>
         <% end %>
       </ul>
+      <% if @cocktail.photo? %>
+        <%= cl_image_tag(@cocktail.photo.path, width: 400, crop: :fill, alt: "Photo de #{@cocktail.name}") %>
+      <% end %>
       <%= link_to "Edit", edit_cocktail_path %>
       <%= link_to "Delete", cocktail_path, method: :delete %>
 

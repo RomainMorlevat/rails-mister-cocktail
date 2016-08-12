@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-4">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(
           <% if cocktail.photo? %>
-          <%= cl_image_tag @product.photo.path, height: 175, crop: :fill %>
+          <%= cloudinary_url(cocktail.photo.path) %>
           <% end %>);">
             <!-- <div class="card-category"></div> -->
             <div class="card-description">
