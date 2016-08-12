@@ -1,15 +1,21 @@
 <div class="container padded">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <% if @cocktails.length > 0 %>
-        <ul>
-          <% @cocktails.each do |cocktail| %>
-            <li><%= link_to cocktail.name, cocktail_path(cocktail) %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>No cocktails in the database</p>
+
+    <% if @cocktails.length > 0 %>
+      <% @cocktails.each do |cocktail| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+            <!-- <div class="card-category"></div> -->
+            <div class="card-description">
+              <h2><%= cocktail.name %></h2>
+            </div>
+            <%= link_to "", cocktail_path(cocktail), class: "card-link"%>
+            </div>
+        </div>
       <% end %>
-    </div>
+    <% else %>
+      <p>No cocktails in the database</p>
+    <% end %>
+
   </div>
 </div>
