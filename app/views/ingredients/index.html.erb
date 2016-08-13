@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <ul>
         <% @ingredients.each do |ingredient| %>
-          <li><%= ingredient.name %> - <%= link_to "delete", ingredient_path(ingredient), method: :delete %></li>
+          <li><%= ingredient.name %> - <%= link_to "delete", ingredient_path(ingredient), method: :delete, data: { confirm: "Are you sure ?" %></li>
         <% end %>
       </ul>
       <%= link_to "Add an ingredient", new_ingredient_path %>
